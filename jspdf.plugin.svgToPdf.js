@@ -46,7 +46,7 @@ var svgElementToPdf = function(element, pdf, options) {
     $(element).children().each(function(i, node) {
         var n = $(node);
         if (n.is("g")) {
-            if (n.attr('transform') !== undefined) {
+            if (n.attr('transform') != null) {
                 var matrix = n.attr('transform').replace(/,/g, ' ').replace('matrix(', '').replace(')', ' cm');
                 pdf.internal.write('q');
                 pdf.internal.write(matrix);
@@ -62,7 +62,7 @@ var svgElementToPdf = function(element, pdf, options) {
         if (n.is('g,line,rect,ellipse,circle,text,path')) {
 
             var fillColor = n.attr('fill');
-            if (typeof(fillColor) != 'undefined') {
+            if (fillColor != null) {
                 var fillRGB = new RGBColor(fillColor);
 
                 if (fillRGB.ok) {
@@ -81,7 +81,7 @@ var svgElementToPdf = function(element, pdf, options) {
         }
 
         var strokeColor = n.attr('stroke');
-        if (typeof(strokeColor) != 'undefined' && strokeColor !== 'none') {
+        if (strokeColor != null && strokeColor !== 'none') {
 
             var strokeRGB = new RGBColor(strokeColor);
             if (strokeRGB.ok) {
@@ -108,7 +108,7 @@ var svgElementToPdf = function(element, pdf, options) {
                 k * parseInt(n.attr('y2')));
 
                 // $.each(node.attributes, function(i, a) {
-                //     if(typeof(a) != 'undefined' && pdfSvgAttr.line.indexOf(a.name.toLowerCase()) == -1) {
+                //     if(a != null && pdfSvgAttr.line.indexOf(a.name.toLowerCase()) == -1) {
                 //         node.removeAttribute(a.name);
                 //     }
                 // });
@@ -122,7 +122,7 @@ var svgElementToPdf = function(element, pdf, options) {
                 k * parseInt(n.attr('height')),
                 colorMode);
                 // $.each(node.attributes, function(i, a) {
-                //     if(typeof(a) != 'undefined' && pdfSvgAttr.rect.indexOf(a.name.toLowerCase()) == -1) {
+                //     if(a != null && pdfSvgAttr.rect.indexOf(a.name.toLowerCase()) == -1) {
                 //         node.removeAttribute(a.name);
                 //     }
                 // });
@@ -135,7 +135,7 @@ var svgElementToPdf = function(element, pdf, options) {
                 k * parseInt(n.attr('ry')),
                 colorMode);
                 // $.each(node.attributes, function(i, a) {
-                //     if(typeof(a) != 'undefined' && pdfSvgAttr.ellipse.indexOf(a.name.toLowerCase()) == -1) {
+                //     if(a != null && pdfSvgAttr.ellipse.indexOf(a.name.toLowerCase()) == -1) {
                 //         node.removeAttribute(a.name);
                 //     }
                 // });
@@ -147,7 +147,7 @@ var svgElementToPdf = function(element, pdf, options) {
                 k * parseInt(n.attr('r')),
                 colorMode);
                 // $.each(node.attributes, function(i, a) {
-                //     if(typeof(a) != 'undefined' && pdfSvgAttr.circle.indexOf(a.name.toLowerCase()) == -1) {
+                //     if(a != null && pdfSvgAttr.circle.indexOf(a.name.toLowerCase()) == -1) {
                 //         node.removeAttribute(a.name);
                 //     }
                 // });
@@ -245,7 +245,7 @@ var svgElementToPdf = function(element, pdf, options) {
                 k * y,
                 text_value);
                 // $.each(node.attributes, function(i, a) {
-                //     if(typeof(a) != 'undefined' && pdfSvgAttr.text.indexOf(a.name.toLowerCase()) == -1) {
+                //     if(a != null && pdfSvgAttr.text.indexOf(a.name.toLowerCase()) == -1) {
                 //         node.removeAttribute(a.name);
                 //     }
                 // });
